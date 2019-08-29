@@ -4,17 +4,17 @@
 # In[5]:
 
 
-import numpy as np
-pk=float(input('산의 pKa를 입력해주세요'))
-k=10**((-1)*(pk))
-c=float(input('산의 농도를 입력해주세요(M)'))
-v=float(input('산의 부피를 입력해주세요(mL)'))
-cNaOH= float(input('NaOH의 농도를 입력해주세요(M)'))
-vNaOH=float(input('NaOH의 부피를 입력해주세요(mL)'))
+import numpy as np #그래프를 그리기 위해 필요한 과정
+pk=float(input('적정시킬 산의 pKa를 입력해주세요')) 
+k=10**((-1)*(pk)) #입력받은 pka로 ph 계산
+c=float(input('적정시킬 산의 농도를 입력해주세요(M)'))
+v=float(input('현재 산의 부피를 입력해주세요(mL)'))
+cNaOH= float(input('적정에 사용할 NaOH의 농도를 입력해주세요(M)'))
+vNaOH=float(input('적정에 사용할NaOH의 부피를 입력해주세요(mL)'))
 a=(k/c)**0.5
 
 def pH(x, cNaOH, c, v, k):
-    acidmmol=c*v
+    acidmmol=c*v #산의 몰수를 구하는 방법(농도 곱하기 부피)
     l=[]
     for i in range(len(x)):
         if x[i]==0 :
@@ -33,7 +33,7 @@ def pH(x, cNaOH, c, v, k):
             l.append(answer)
     return l
 def dang(x, cNaOH, c, v, k):
-    answer = 14 + 0.5* np.log10((10**(-14))*(c*v/(v+x))/k)
+    answer = 14 + 0.5* np.log10((10**(-14))*(c*v/(v+x))/k) #+
     return answer
 def first(cNaOH, c, v, k):
     answer = (-0.5)*np.log10(c*k)
@@ -67,6 +67,6 @@ c= first(cNaOH, c, v, k)
 print('붉은색 그래프는 같은 농도, 부피인 강산의 적정곡선입니다. 약산과 비교해보세요^^')
 print(int(a), 'mL를 넣었을 때 당량점 입니다. 이때 pH는',float(b), '입니다.')
 print('약산의 초기 pH는', float(c),'입니다')
-if k<10**(-6):
-    print('약산의 Ka 값이 작아서 지시약 적정에 사용할 수 없습니다. 다른 산을 골라주세요^^')
+if k<10**(-6): 
+    print('약산의 Ka 값이 작아서 지시약 적정에 사용할 수 없습니다. 다른 산을 골라주세요^^') 
 
